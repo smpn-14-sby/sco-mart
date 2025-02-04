@@ -1,0 +1,272 @@
+*{
+    background-image: url(https://cdn.pixabay.com/photo/2017/05/24/12/04/ppt-backgrounds-2340383_960_720.png);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    list-style: none; /* Hilangkan titik bulat */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin-right: 15px; /* Tambahkan jarak antar elemen */
+}
+
+.navbar li:last-child {
+    margin-right: 0; /* Hilangkan jarak pada elemen terakhir */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: rgb(58, 58, 58);
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    color: #ffffff; /* Warna ketika dihover */
+}
+
+
+/* nav {
+    background-color: #353434;
+    padding: 1rem;
+}
+
+nav a {
+    color: rgb(189, 184, 184);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+}
+
+nav a:hover {
+    background-color: #555;
+} */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    border: 1px solid #838383;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.cart {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background-color: #333;
+    color: rgb(97, 96, 96);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.cart-items {
+    margin-top: 1rem;
+}
+
+.main-login{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form__input{
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.form__button{
+    background-color: #7a7a7a;
+    color: rgb(94, 97, 97);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: rgb(102, 107, 105);
+    
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc93;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: rgb(143, 139, 139);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        background-color: #333;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .navbar {
+        display: flex;
+        list-style: none; /* Hilangkan titik bulat */
+        margin: 0;
+        padding: 0;
+      }
+      
+      .navbar li {
+        margin-right: 15px; /* Tambahkan jarak antar elemen */
+      }
+      
+      .navbar li:last-child {
+        margin-right: 0; /* Hilangkan jarak pada elemen terakhir */
+      }
+      
+      .navbar a {
+        text-decoration: none;
+        color: rgb(50, 45, 45);
+        font-size: 16px;
+      }
+      
+      .navbar a:hover {
+        color: #fcfcfc; /* Warna ketika dihover */
+      }
+      
+    /* nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+    } */
+
+    .products {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .product-card {
+        font-size: 14px;
+        padding: 0.5rem;
+    }
+
+    .cart {
+        width: 90%;
+        right: 5%;
+        bottom: 5%;
+        padding: 1rem;
+    }
+
+    header .logo {
+        width: 50px;
+        height: auto;
+    }
+
+    .main-login {
+        padding: 1rem;
+        height: auto;
+    }
+
+    .form__input,
+    .form__button {
+        font-size: 14px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .product-card img {
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
+    }
+}
+
+/* @media screen and (max-width: 480px) {
+    nav a {
+        font-size: 14px;
+    }
+
+    .product-card h3 {
+        font-size: 1rem;
+    }
+
+    .cart {
+        font-size: 14px;
+    }
+}
+ */

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Koperasi Online - SMPN 14 Surabaya</title>
+    <link rel="icon" type="image/x-icon" href="../static/img/logoo.png">
+</head>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <img class="logo" src="../static/img/logoo.png" alt="logo">
+        <img class="koperasi-img" src="../static/img/koperasi.png" alt="koperasi">
+        <ul class="navbar-links">
+            <li><a href="#" onclick="showPage('home')">Halaman Utama</a></li>
+            <li><a href="#" onclick="showPage('products')">Daftar Produk</a></li>
+            <li><a href="#" onclick="showPage('about')">Tentang Web ini</a></li>
+            <li><a href="#" onclick="showPage('contact')">Kontak kami</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- <nav class="navbar">
+    <img class="item_img logo" src="../static/img/logoo.png" alt="logo">
+    <img class="item_img koperasi-img" src="../static/img/koperasi.png" alt="koperasi">
+    <a href="#" onclick="showPage('home')">Halaman Utama</a>
+    <a href="#" onclick="showPage('products')">Daftar Produk</a>
+    <a href="#" onclick="showPage('about')">Tentang Web ini</a>
+    <a href="#" onclick="showPage('contact')">Kontak kami</a>
+</nav> -->
+
+<div class="container" id="main-content"></div>
+
+<div class="cart" id="cart">
+    <h3>Keranjang Pembelian</h3>
+    <div class="cart-items" id="cart-items"></div>
+    <p>Total Items: <span id="total-items">0</span></p>
+    <p>Total Price: <span id="total-price"></span></p>
+    <button onclick="checkout()">Checkout</button>
+</div>
+
+    <script>
+        let cart = [];
+        const products = [
+            { id: 1, name: 'Dasi Kelas 7', price: 25000, image: 'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064922/dasi7_w8beho.jpg'},
+            { id: 2, name: 'Dasi kelas 9', price: 25000, image: 'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064872/dasi9_gcagcs.jpg' },
+            { id: 3, name: 'Sabuk', price:30000, image:'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064787/sabuk_yjblvg.jpg' },
+            { id: 4, name: 'Topi', price: 25000, image: 'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064713/topi_hkz1th.jpg' },
+            { id: 5, name: 'Kaos Kaki Putih', price:20000, image:'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064585/kkbirput_soziez.jpg' },
+            { id: 6, name: 'Kaos Kaki Hitam', price: 20000, image: 'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064652/kkpramuka_euyvla.jpg' },
+            { id: 7, name: 'Batik', price: 250000, image: 'https://res.cloudinary.com/dzdws6q7q/image/upload/v1731064346/batik_wjskdo.jpg' }
+            
+        ];
+
+        function showPage(page) {
+            const content = document.getElementById('main-content');
+            switch(page) {
+                case 'home':
+                    content.innerHTML = '<h1>Selamat datang di aplikasi koperasi online</h1><p>Latar belakang pembuatan aplikasi ini adalah karena sering terjadinya antrian panjang di koperasi sekolah. Antrian yang lama bisa mengganggu aktivitas yang lainnya dan membuat waktu terbuang sia-sia. Dengan adanya aplikasi ini, diharapkan dapat membantu proses pembelian dengan lebih mudah dan cepat tanpa harus menunggu lama. Aplikasi ini juga bertujuan untuk memudahkan anda dalam membeli Atribut Sekolah dengan cara yang lebih efisien.</p>';
+                    break;
+                case 'products':
+                    showProducts();
+                    break;
+                case 'about':
+                    content.innerHTML = '<h1>Tentang web ini</h1><p>Aplikasi ini hadir untuk memberikan kemudahan dalam berbelanja di koperasi sekolah. Dengan aplikasi ini, Orang Tua siswa dapat melakukan pembelian barang secara online, tanpa perlu antri panjang di koperasi sekolah. Berbagai produk kebutuhan sekolah tersedia di dalamnya, mulai dari seragam dan berbagai Atribut Sekolah lainnya. Aplikasi ini dibuat untuk memberikan pengalaman belanja yang lebih cepat, praktis, dan efisien. Cukup buka aplikasi, pilih barang yang diinginkan, dan anda langsung bisa menghubungi nomor yang sudah tertera pada aplikasi ini.</p>';
+                    break;
+                case 'contact':
+                    content.innerHTML = '<h1>Kontak Untuk konfirmasi</h1><p>Email: contact @firlyrisyafaanindita@gmail.com<br></p><br><br>Klik refresh untuk Mengulangi Pesanan dan Pastikan Kirim Konfirmasi <strong>Order ID</strong> setelah berhasil checkout ke Whatsapp dibawah ini: </p><a href="https://wa.me/62881036600912">Contact Whatsapp</a>';
+                    break;
+            }
+        }
+
+        function showProducts() {
+            const content = document.getElementById('main-content');
+            content.innerHTML = '<h1>Produk kami</h1><div class="products"></div>';
+            const productsContainer = content.querySelector('.products');
+
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.price}</p>
+                        <button onclick="addToCart(${product.id})">tambah ke keranjang</button>
+                    </div>
+                `;
+                productsContainer.innerHTML += productCard;
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalItems = document.getElementById('total-items');
+            const totalPrice = document.getElementById('total-price');
+
+            cartItems.innerHTML = cart.map(item => `
+                <div>${item.name}  ${item.price}</div>
+            `).join('');
+
+
+            totalItems.textContent = cart.length;
+            totalPrice.textContent = cart.reduce((sum, item) => sum + item.price,0 ).toFixed(2);
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const formData = {
+                items: cart,
+                total: cart.reduce((sum, item) => sum + item.price, 0)
+            };
+
+            // Send to backend (will be implemented later)
+            fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Order Kamu Sukses! Nomor Antrianmu Adalah ${data.order_id} ,Konfirmasi Nomor Antrian di Bagian "Kontak Kami"`);
+                // alert('Order placed successfully!');
+                cart = [];
+                updateCart();
+            })
+            .catch(error => {
+                alert('Error processing order. Please try again.');
+            });
+        }
+
+        // Show home page by default
+        showPage('home');
+    </script>
+</body>
+</html>

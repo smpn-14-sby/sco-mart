@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sco-Mart Registration</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/logoo.png">
+</head>
+<body>
+    <header class="header">
+        <img src="../static/img/logoo.png" alt="logo" class="logo">
+        <ul class="main-list">
+            <!-- Add any additional navigation items if needed -->
+        </ul>
+    </header>
+
+    <main class="main-login">
+        {% block content %}
+        <form action="{{ url_for('reg') }}" method="post" class="login-form">
+            <h2>Buat Akun</h2>
+            <label for="Nama">
+                <input class="form__input" type="text" name="Nama" id="Nama" placeholder="Masukkan Nama Anda" required>
+            </label>
+            <label for="Kelas">
+                <input class="form__input" type="text" name="Kelas" id="Kelas" placeholder="Masukkan kelas!" required>
+            </label>
+            <button type="submit" class="form__button">Buat akun</button>
+        </form>
+        {% endblock %}
+    </main>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Registrasi</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../static/img/logoo.png">
+</head>
+<body>
+    <header class="header">
+        <img src="../static/img/logoo.png" alt="logo" width="30" height="30">
+        <ul class="main-list">
+
+        </ul>
+      </header>
+      <main class="main-login">
+        
+        <form action="{{ url_for('reg') }}" method="post" class="login">
+            <label for="nama">
+                <input class="form__input" type="text" name="Nama" id="Nama" placeholder="Masukkan Nama Anda" required>
+            </label>
+            <label for="kelas">
+                <input class="form__input" type="text" name="Kelas" id="Kelas" placeholder="Masukkan kelas!" required>
+            </label>
+                <button class="form__button">Buat akun</button>
+        </form>
+        
+      </main>
+</body>
+</html> -->
